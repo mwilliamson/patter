@@ -2,7 +2,7 @@
     "name": "patter",
     "version": "0.1.0",
     "author": "Michael Williamson <mike@zwobble.org>",
-    "description": "Utilies for iterating through arrays using promises",
+    "description": "Utilities for iterating through arrays using promises",
     "keywords": ["async", "promise", "foreach", "map", "filter"],
     "main": "./lib/index.js",
     "repository": {
