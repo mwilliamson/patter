@@ -63,6 +63,24 @@ test("forEachSeries applies iterator to each element of the array", function(pro
         });
 });
 
+test("forEachSeries returns rejected promise if iterator returns rejected promise", function(promises, test) {
+    var input = ["apple", "banana"];
+    
+    var iteratorIndex = 0;
+    function iterator(element, index) {
+        return promises.rejected(new Error("Hah!"));
+    }
+    
+    test.expect(1);
+    return promises.forEachSeries(input, iterator)
+        .then(function(value) {
+            test.fail("Should be rejected promise");
+        }, function(error) {
+            test.deepEqual(error.message, "Hah!");
+            test.done();
+        });
+});
+
 test("forEachSeries returns once all promises have finished", function(promises, test) {
     test.expect(3);
     
@@ -137,6 +155,24 @@ test("forEach applies iterator to each element of the array", function(promises,
     return promises.forEach(input, iterator)
         .then(function(value) {
             test.deepEqual(value, null);
+            test.done();
+        });
+});
+
+test("forEach returns rejected promise if iterator returns rejected promise", function(promises, test) {
+    var input = ["apple", "banana"];
+    
+    var iteratorIndex = 0;
+    function iterator(element, index) {
+        return promises.rejected(new Error("Hah!"));
+    }
+    
+    test.expect(1);
+    return promises.forEach(input, iterator)
+        .then(function(value) {
+            test.fail("Should be rejected promise");
+        }, function(error) {
+            test.deepEqual(error.message, "Hah!");
             test.done();
         });
 });
