@@ -219,6 +219,36 @@ test("forEach calls iterator on all elements at once", function(promises, test) 
         });
 });
 
+// mapSeries
+
+test("mapSeries returns promise of list of mapped array", function(promises, test) {
+    function iterator(element, index) {
+        return promises.resolved(index + ": " + element);
+    }
+    
+    test.expect(1);
+    return promises.mapSeries(["apple", "banana"], iterator)
+        .then(function(value) {
+            test.deepEqual(value, ["0: apple", "1: banana"]);
+            test.done();
+        });
+});
+
+// map
+
+test("map returns promise of list of mapped array", function(promises, test) {
+    function iterator(element, index) {
+        return promises.resolved(index + ": " + element);
+    }
+    
+    test.expect(1);
+    return promises.map(["apple", "banana"], iterator)
+        .then(function(value) {
+            test.deepEqual(value, ["0: apple", "1: banana"]);
+            test.done();
+        });
+});
+
 function test(name, func) {
     var impls = ["promise", "q"];
     
