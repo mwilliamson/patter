@@ -34,6 +34,7 @@ just call the appropriate function:
 * `require("patter").q()` -- use [q](https://github.com/kriskowal/q)
 * `require("patter").promise()` -- use [promise](https://github.com/then/promise)
 * `require("patter").when()` -- use [when.js](https://github.com/cujojs/when)
+* `require("patter").deferred()` -- use [Deferred](https://github.com/medikoo/deferred)
 
 Note that patter does *not* depend on any promise implementation.
 In other words, if you want to use, say, q with patter,
