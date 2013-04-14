@@ -111,8 +111,8 @@ Arguments:
 
 * `array` -- an array to iterate over.
 * `iterator(element, index)` -- the iterator is passed each element of the array
-  and its index. Should return true if the element should be in the new array,
-  false otherwise.
+  and its index. Should return a promise of a boolean, true if the element
+  should be in the new array, false otherwise.
 
 ### filterSeries(array, iterator)
 
