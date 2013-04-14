@@ -106,6 +106,83 @@ test("forEachSeries only calls iterator once previous has finished", function(pr
         });
 });
 
+// forEach
+
+test("forEach does nothing if array is empty", function(promises, test) {
+    function reject() {
+        test.fail("Should not be called");
+        return promises.rejected(new Error("Hah!"));
+    }
+    
+    test.expect(1);
+    return promises.forEach([], reject)
+        .then(function(value) {
+            test.deepEqual(value, null);
+            test.done();
+        });
+});
+
+test("forEach applies iterator to each element of the array", function(promises, test) {
+    var input = ["apple", "banana"];
+    
+    var iteratorIndex = 0;
+    function iterator(element, index) {
+        test.equal(index, iteratorIndex);
+        test.equal(input[iteratorIndex], element);
+        iteratorIndex++;
+        return promises.resolved(null);
+    }
+    
+    test.expect(5);
+    return promises.forEach(input, iterator)
+        .then(function(value) {
+            test.deepEqual(value, null);
+            test.done();
+        });
+});
+
+test("forEach returns once all promises have finished", function(promises, test) {
+    test.expect(3);
+    
+    var input = ["apple", "banana"];
+    function iterator(element, index) {
+        return promises.create(function(resolve, reject) {
+            setTimeout(function() {
+                test.ok(true);
+                resolve(null)
+            }, 10);
+        });
+    }
+    
+    return promises.forEach(input, iterator)
+        .then(function(value) {
+            test.deepEqual(value, null);
+            test.done();
+        });
+});
+
+test("forEach calls iterator on all elements at once", function(promises, test) {
+    test.expect(3);
+    var inProgress = 0;
+    var input = ["apple", "banana"];
+    function iterator(element, index) {
+        test.equal(inProgress, index);
+        inProgress++;
+        return promises.create(function(resolve, reject) {
+            setTimeout(function() {
+                inProgress--;
+                resolve(null)
+            }, 10);
+        });
+    }
+    
+    return promises.forEach(input, iterator)
+        .then(function(value) {
+            test.deepEqual(value, null);
+            test.done();
+        });
+});
+
 function test(name, func) {
     var impls = ["promise", "q"];
     
