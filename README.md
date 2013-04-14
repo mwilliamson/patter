@@ -121,3 +121,24 @@ Arguments:
 The same as `filter`,
 except that `iterator` is only called on each element once the previous
 application of `iterator` has finished.
+
+### find(array, iterator)
+
+Find an element in `array` that satisfies `iterator`.
+`find` runs in parallel, and will return the first matching value to return,
+which may not be the first matching value in the array.
+
+Arguments:
+
+* `array` -- an array to iterate over.
+* `iterator(element, index)` -- the iterator is passed each element of the array
+  and its index. Should return a promise of a boolean.
+
+### findSeries(array, iterator)
+
+The same as `find`,
+except that `iterator` is only called on each element once the previous
+application of `iterator` has finished.
+This means that the value returned is the first matching value in the array.
+
+

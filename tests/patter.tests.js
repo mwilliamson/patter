@@ -279,6 +279,46 @@ test("filter returns promise of filtered array", function(promises, test) {
         });
 });
 
+// findSeries
+
+test("findSeries returns promise of first matching element", function(promises, test) {
+    function iterator(element, index) {
+        return promises.create(function(resolve, reject) {
+            setTimeout(function() {
+                resolve(index % 2 === 1)
+            }, (4 - index) * 10);
+        });
+    }
+    
+    test.expect(1);
+    return promises.findSeries(["apple", "banana", "coconut", "durian"], iterator)
+        .then(function(value) {
+            test.deepEqual(value, "banana");
+            test.done();
+        });
+});
+
+// find
+
+test("find returns promise of first-to-return matching element", function(promises, test) {
+    function iterator(element, index) {
+        return promises.create(function(resolve, reject) {
+            setTimeout(function() {
+                resolve(index % 2 === 1)
+            }, (4 - index) * 10);
+        });
+    }
+    
+    test.expect(1);
+    return promises.find(["apple", "banana", "coconut", "durian"], iterator)
+        .then(function(value) {
+            test.deepEqual(value, "durian");
+            test.done();
+        });
+});
+
+
+
 function test(name, func) {
     var impls = ["promise", "q", "when", "deferred"];
     
