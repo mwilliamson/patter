@@ -298,6 +298,19 @@ test("findSeries returns promise of first matching element", function(promises, 
         });
 });
 
+test("findSeries returns undefined if matching element is not found", function(promises, test) {
+    function iterator(element, index) {
+        return promises.resolved(false);
+    }
+    
+    test.expect(1);
+    return promises.findSeries(["apple", "banana"], iterator)
+        .then(function(value) {
+            test.strictEqual(value, undefined);
+            test.done();
+        });
+});
+
 // find
 
 test("find returns promise of first-to-return matching element", function(promises, test) {
@@ -313,6 +326,19 @@ test("find returns promise of first-to-return matching element", function(promis
     return promises.find(["apple", "banana", "coconut", "durian"], iterator)
         .then(function(value) {
             test.deepEqual(value, "durian");
+            test.done();
+        });
+});
+
+test("find returns undefined if matching element is not found", function(promises, test) {
+    function iterator(element, index) {
+        return promises.resolved(false);
+    }
+    
+    test.expect(1);
+    return promises.find(["apple", "banana"], iterator)
+        .then(function(value) {
+            test.strictEqual(value, undefined);
             test.done();
         });
 });

@@ -125,8 +125,10 @@ application of `iterator` has finished.
 ### find(array, iterator)
 
 Find an element in `array` that satisfies `iterator`.
-`find` runs in parallel, and will return the first matching value to return,
-which may not be the first matching value in the array.
+Returns `undefined` if no such element is found.
+
+`find` runs in parallel, and will use the first matching value to resolve,
+which may not be the first matching value (by index) in the array.
 
 Arguments:
 
@@ -139,6 +141,6 @@ Arguments:
 The same as `find`,
 except that `iterator` is only called on each element once the previous
 application of `iterator` has finished.
-This means that the value returned is the first matching value in the array.
+This means that the value returned is the first matching value (by index) in the array.
 
 
