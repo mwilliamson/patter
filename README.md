@@ -25,8 +25,8 @@ and instead must be created with a promise implemention.
 For libraries that are directly supported by Patter,
 just call the appropriate function:
 
-* `require("patter").q()` -- use [q](https://github.com/kriskowal/q):
-* `require("patter").promise()` -- use [promise](https://github.com/then/promise):
+* `require("patter").q()` -- use [q](https://github.com/kriskowal/q)
+* `require("patter").promise()` -- use [promise](https://github.com/then/promise)
 
 Note that patter does *not* depend on any promise implementation.
 In other words, if you want to use, say, q with patter,
