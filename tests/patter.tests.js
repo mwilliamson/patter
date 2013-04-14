@@ -249,6 +249,36 @@ test("map returns promise of list of mapped array", function(promises, test) {
         });
 });
 
+// filterSeries
+
+test("filterSeries returns promise of filtered array", function(promises, test) {
+    function iterator(element, index) {
+        return promises.resolved(index % 2 === 0);
+    }
+    
+    test.expect(1);
+    return promises.filterSeries(["apple", "banana"], iterator)
+        .then(function(value) {
+            test.deepEqual(value, ["apple"]);
+            test.done();
+        });
+});
+
+// filter
+
+test("filter returns promise of filtered array", function(promises, test) {
+    function iterator(element, index) {
+        return promises.resolved(index % 2 === 0);
+    }
+    
+    test.expect(1);
+    return promises.filter(["apple", "banana"], iterator)
+        .then(function(value) {
+            test.deepEqual(value, ["apple"]);
+            test.done();
+        });
+});
+
 function test(name, func) {
     var impls = ["promise", "q"];
     
