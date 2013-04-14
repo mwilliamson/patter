@@ -1,6 +1,6 @@
 {
     "name": "patter",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "author": "Michael Williamson <mike@zwobble.org>",
     "description": "Utilities for iterating through arrays using promises",
     "keywords": ["async", "promise", "foreach", "map", "filter"],
