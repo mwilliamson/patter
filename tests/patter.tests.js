@@ -280,7 +280,7 @@ test("filter returns promise of filtered array", function(promises, test) {
 });
 
 function test(name, func) {
-    var impls = ["promise", "q"];
+    var impls = ["promise", "q", "when"];
     
     impls.forEach(function(impl) {
         exports[impl + ": " + name] = function(test) {
