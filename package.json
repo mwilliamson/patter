@@ -12,11 +12,13 @@
     "dependencies": {
     },
     "devDependencies": {
-        "mocha": "~1.8"
+        "nodeunit": "~0.8.0",
+        "promise": "2.0.0",
+        "q": "~0.9.2"
     },
     "license": "BSD",
     "scripts": {
-        "test": "mocha tests"
+        "test": "nodeunit tests"
     }
 }
 
