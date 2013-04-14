@@ -1,0 +1,22 @@
+{
+    "name": "patter",
+    "version": "0.1.0",
+    "author": "Michael Williamson <mike@zwobble.org>",
+    "description": "Utilies for iterating through arrays using promises",
+    "keywords": ["async", "promise", "foreach", "map", "filter"],
+    "main": "./lib/index.js",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/mwilliamson/patter.git"
+    },
+    "dependencies": {
+    },
+    "devDependencies": {
+        "mocha": "~1.8"
+    },
+    "license": "BSD",
+    "scripts": {
+        "test": "mocha tests"
+    }
+}
+
