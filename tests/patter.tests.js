@@ -343,6 +343,34 @@ test("find returns undefined if matching element is not found", function(promise
         });
 });
 
+// foldLeft
+
+test("foldLeft returns initial value if array is empty", function(promises, test) {
+    function iterator(accumulator, element, index) {
+        return "apple";
+    }
+    
+    test.expect(1);
+    return promises.foldLeft([], "banana", iterator)
+        .then(function(value) {
+            test.strictEqual(value, "banana");
+            test.done();
+        });
+});
+
+test("foldLeft applies function to accumulator and each value from left-to-right", function(promises, test) {
+    function iterator(accumulator, element, index) {
+        return promises.resolved(accumulator + index + element);
+    }
+    
+    test.expect(1);
+    return promises.foldLeft(["apple", "banana"], "|", iterator)
+        .then(function(value) {
+            test.strictEqual(value, "|0apple1banana");
+            test.done();
+        });
+});
+
 
 
 function test(name, func) {

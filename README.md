@@ -143,4 +143,19 @@ except that `iterator` is only called on each element once the previous
 application of `iterator` has finished.
 This means that the value returned is the first matching value (by index) in the array.
 
+### foldLeft(array, initialValue, iterator)
 
+Aliases: `reduce`, `foldl`
+
+`foldLeft` calls `iterator` once for each element in `array`.
+`iterator` is passed the accumulator value, the value of the current element,
+and the index of the current element.
+The accumulator value is the value returned by the previous `iterator` call,
+or `initialValue` if the current element is the first element.
+
+Arguments:
+
+* `array` -- an array to iterate over
+* `initialValue` -- initial value of the accumulator
+* `iterator(accumulator, element, index)`
+  -- the iterator is passed the current value of the accumulator and each element of the array and its index.
